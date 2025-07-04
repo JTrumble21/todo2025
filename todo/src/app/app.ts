@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { TodoList } from './todoList';
 import { TodoItem } from './todoItem';
-
 import { FormsModule } from '@angular/forms'
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -16,7 +15,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
-  standalone: false,
   standalone: true,
   imports: [FormsModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatBadgeModule,
@@ -44,7 +42,7 @@ export class App {
   }
 
   get items(): readonly TodoItem[] {
-    return this.list.items.filter(item => !item.complete);
+    return this.list.items.filter(item => this.showComplete || !item.complete);
   }
   
   addItem(newItem: string) {
@@ -52,5 +50,7 @@ export class App {
       this.list.addItem(newItem);
     }    
   }
+
+  showComplete: boolean = false;
 
 }
