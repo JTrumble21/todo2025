@@ -7,8 +7,10 @@ import { App } from './app';
   declarations: [
     App
   ],
+  
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserModule, App,
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
